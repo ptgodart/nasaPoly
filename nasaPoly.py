@@ -1,5 +1,6 @@
 import re
 import math
+from pathlib import Path
 '''Example data:
 
 H2O               CODATA 1989. JRNBS 1987 v92 p35. TRC tuv-25 10/88.
@@ -12,6 +13,8 @@ H2O               CODATA 1989. JRNBS 1987 v92 p35. TRC tuv-25 10/88.
  9.426468930D-11-4.822380530D-15 0.000000000D+00-1.384286509D+04-7.978148510D+00
 '''
 
+raw_data_path = Path(__file__).parent / 'raw.dat'
+
 print_str = '''
 Species Name: {}
 Data Source: {}
@@ -20,7 +23,7 @@ Valid temperature range(s): {}
 '''
 
 def _getEntry(name):
-    with open('raw.dat', 'r') as raw_data_file:
+    with open(raw_data_path, 'r') as raw_data_file:
         raw_data = raw_data_file.read()
         entry = [s.strip() for s in re.split('\n(?=[a-zA-Z])', raw_data) if s[0:16].strip() == name]
         return(entry)
