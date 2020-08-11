@@ -46,7 +46,7 @@ class Species():
         self.chem_formula = lines[1][10:50]
         self.phase = int(lines[1][50:52])
         self.phase_name = {0: 'gas', 1: 'solid', 2: 'liquid'}[self.phase]
-        self.moleculr_wt = float(lines[1][52:65])
+        self.molecular_wt = float(lines[1][52:65])
         self.h_f_0 = float(lines[1][65:80]) # heat of formation at 298.15 K, J/mol
         if self.num_T_ints > 0:
             self.delta_h_0 = float(lines[2][65:80]) # h_0(298.15)–h_0(0) J/mol, if available 
@@ -63,7 +63,7 @@ class Species():
         print(self)
 
     def __str__(self):
-        return(print_str.format(self.species_name, self.source, self.moleculr_wt, \
+        return(print_str.format(self.species_name, self.source, self.molecular_wt, \
                 ', '.join([str(tuple(T)) for T in self.T_ranges])))
 
     def _getCoeffs(self, T):
