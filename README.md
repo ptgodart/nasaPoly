@@ -13,10 +13,10 @@ import nasaPoly
 Water = nasaPoly.Species('H2O(L)')
 
 T = 300 # K
-h_0 = Water.H_0(T) # J/mol
-s_0 = Water.S_0(T) # J/mol-K
-g_0 = Water.G_0(T) # J/mol
-cp_0 = Water.Cp_0(T) # J/mol-K
+h_0 = Water.h_0(T) # J/mol
+s_0 = Water.s_0(T) # J/mol-K
+g_0 = Water.g_0(T) # J/mol
+cp_0 = Water.cp_0(T) # J/mol-K
 
 # Print state (for testing)
 Water.printState(T)
