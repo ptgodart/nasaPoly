@@ -46,7 +46,7 @@ class Species():
         self.moleculr_wt = float(lines[1][52:65])
         self.h_f_0 = float(lines[1][65:80]) # heat of formation at 298.15 K, J/mol
         if self.num_T_ints > 0:
-            self.delta_h_0 = float(lines[2][65:80]) # H_0(298.15)–H_0(0) J/mol, if available 
+            self.delta_h_0 = float(lines[2][65:80]) # h_0(298.15)–h_0(0) J/mol, if available 
         self.T_ranges = []
         self.coefficients = []
         for i in range(0, self.num_T_ints):
@@ -67,30 +67,32 @@ class Species():
         for i in range(0, self.num_T_ints):
             if T >= self.T_ranges[i][0] and T < self.T_ranges[i][1]:
                 return(self.coefficients[i])
-            print('{} K is out of valid range(s)!'.format(T))
+        print('{} K is out of valid range(s) for {}!'.format(T, \
+                                                                self.species_name))
+        raise ValueError
     
-    def Cp_0(self, T): # J/mol-K
+    def cp_0(self, T): # J/mol-K
         c = self._getCoeffs(T) # c[0-6] => a1-a7, c[7-8] => b1-b2
         return(self.R*(c[0]*T**(-2) + c[1]*T**(-1) + c[2] + c[3]*T + \
             c[4]*T**2 + c[5]*T**3 + c[6]*T**4))
 
-    def H_0(self, T): # J/mol
+    def h_0(self, T): # J/mol
         c = self._getCoeffs(T) # c[0-6] => a1-a7, c[7-8] => b1-b2
         return(self.R*T*(-c[0]*T**(-2) + c[1]*math.log(T)/T + c[2] + \
             c[3]*T/2 + c[4]*(T**2)/3 + c[5]*(T**3)/4 + c[6]*(T**4)/5 + c[7]/T))
 
-    def S_0(self, T): # J/mol-K
+    def s_0(self, T): # J/mol-K
         c = self._getCoeffs(T) # c[0-6] => a1-a7, c[7-8] => b1-b2
         return(self.R*(-c[0]*(T**(-2))/2 - c[1]*T**(-1) + c[2]*math.log(T) + \
                 c[3]*T + c[4]*(T**2)/2 + c[5]*(T**3)/3 + c[6]*(T**4)/4 + c[8]))
 
-    def G_0(self, T): # J/mol
-        return(self.H_0(T) - T*self.S_0(T))
+    def g_0(self, T): # J/mol
+        return(self.h_0(T) - T*self.s_0(T))
 
     def printState(self, T):
-        print('State for {} at {} K:\nCp_0 = {} J/mol-K\nH_0 = {} J/mol\nS_0 = {} J/mol-K\
-                \nG_0 = {} J/mol\n'.format(\
-                self.species_name, T, self.Cp_0(T), self.H_0(T), self.S_0(T), self.G_0(T)))
+        print('State for {} at {} K:\ncp_0 = {} J/mol-K\nh_0 = {} J/mol\ns_0 = {} J/mol-K\
+                \ng_0 = {} J/mol\n'.format(\
+                self.species_name, T, self.cp_0(T), self.h_0(T), self.s_0(T), self.g_0(T)))
 
 if __name__ == '__main__':
     Water = Species('H2O(L)')
@@ -98,4 +100,7 @@ if __name__ == '__main__':
     
     test_temp = 300 # K
     Water.printState(test_temp)
-    Steam.printState(test_temp)
+    Steam.printState(1500)
+
+    h_0_water = Water.h_0(test_temp)
+    print('{} J/mol'.format(h_0_water))
