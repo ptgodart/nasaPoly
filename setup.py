@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name="ptgodart",
+    name="nasaPoly",
     version="0.0.1",
     author="Peter Godart",
     author_email="ptgodart@mit.edu",
