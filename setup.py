@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="nasaPoly",
@@ -8,6 +8,6 @@ setup(
     description="Python interface to NASA thermodynamics polynomial fits",
     long_description=open('README.md').read(),
     url="https://github.com/ptgodart/nasaPoly.git",
-    packages=['nasaPoly',],
+    packages=find_packages(),
     python_requires='>=3.6',
 )
