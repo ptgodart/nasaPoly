@@ -9,7 +9,8 @@ setup(
     long_description=open('README.md').read(),
     url="https://github.com/ptgodart/nasaPoly.git",
     py_modules=['nasaPoly'],
+    packages=find_packages(),
     python_requires='>=3.6',
-    package_data={'': ['raw.dat']},
+    package_data={'nasaPoly': ['raw.dat']},
     include_package_data=True,
 )
