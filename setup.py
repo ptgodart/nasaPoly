@@ -9,6 +9,6 @@ setup(
     long_description=open('README.md').read(),
     url="https://github.com/ptgodart/nasaPoly.git",
     packages=find_packages(),
-    package_dir={"nasaPoly":"nasaPoly"},
+    package_dir={"":"nasaPoly"},
     python_requires='>=3.6',
 )
