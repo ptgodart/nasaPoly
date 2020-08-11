@@ -10,4 +10,5 @@ setup(
     url="https://github.com/ptgodart/nasaPoly.git",
     py_modules=['nasaPoly'],
     python_requires='>=3.6',
+    data_files=[('', 'raw.dat')],
 )
