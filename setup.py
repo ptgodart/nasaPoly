@@ -8,7 +8,6 @@ setup(
     description="Python interface to NASA thermodynamics polynomial fits",
     long_description=open('README.md').read(),
     url="https://github.com/ptgodart/nasaPoly.git",
-    packages=find_packages(),
-    package_dir={"nasaPoly":""},
+    packages=find_packages(include=['nasaPoly']),
     python_requires='>=3.6',
 )
