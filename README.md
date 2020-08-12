@@ -25,6 +25,8 @@ s_0 = Water.s_0(T) # J/mol-K
 g_0 = Water.g_0(T) # J/mol
 cp_0 = Water.cp_0(T) # J/mol-K
 
-# Print state (for testing)
+# Print state
 Water.printState(T)
+
+print(Water.molecular_wt)
 ```
