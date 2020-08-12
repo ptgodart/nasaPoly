@@ -70,8 +70,7 @@ class Species():
         for i in range(0, self.num_T_ints):
             if T >= self.T_ranges[i][0] and T < self.T_ranges[i][1]:
                 return(self.coefficients[i])
-        print('{} K is out of valid range(s) for {}!'.format(T, \
-                                                                self.species_name))
+        print('{} K is out of valid range(s) for {}!'.format(T, self.species_name))
         raise ValueError
     
     def cp_0(self, T): # J/mol-K
