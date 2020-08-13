@@ -29,4 +29,7 @@ cp_0 = Water.cp_0(T) # J/mol-K
 Water.printState(T)
 
 print(Water.molecular_wt)
+
+# List all available species
+nasaPoly.listSpecies()
 ```
