@@ -23,10 +23,25 @@ Valid temperature range(s): {}
 '''
 
 def _getEntry(name):
-    with open(raw_data_path, 'r') as raw_data_file:
+    with open(str(raw_data_path), 'r') as raw_data_file:
         raw_data = raw_data_file.read()
         entry = [s.strip() for s in re.split('\n(?=[a-zA-Z])', raw_data) if s[0:16].strip() == name]
         return(entry)
+
+def listSpecies():
+    with open(str(raw_data_path), 'r') as raw_data_file:
+        raw_data = raw_data_file.read()
+        species = [s.split()[0].strip() for s in re.split('\n(?=[a-zA-Z])', raw_data)][2:-1]
+        species = sorted(species)
+        num_cols = 5
+        num_rows = len(species) // num_cols + 1
+        for i in range(0, len(species) % num_cols):
+            species.append('')
+        species_cols = [species[i:i + num_rows] for i in range(0, len(species), num_rows)]
+        max_width = len(max(species, key = len))
+        for row in zip(*species_cols):
+            row_string = ('{:<' + str(max_width) + '} ') * num_cols
+            print(row_string.format(*row))
 
 class Species():
     def __init__(self, name):
@@ -105,4 +120,6 @@ if __name__ == '__main__':
     Steam.printState(1500)
 
     h_0_water = Water.h_0(test_temp)
-    print('{} J/mol'.format(h_0_water))
+    print('{} J/mol\n'.format(h_0_water))
+
+    listSpecies()
