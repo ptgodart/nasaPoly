@@ -2,7 +2,6 @@ import re
 import math
 from pathlib import Path
 '''Example data:
-
 H2O               CODATA 1989. JRNBS 1987 v92 p35. TRC tuv-25 10/88.
  2 g 8/89 H   2.00O   1.00    0.00    0.00    0.00 0   18.0152800    -241826.000
     200.000  1000.000 7 -2.0 -1.0  0.0  1.0  2.0  3.0  4.0  0.0         9904.092
