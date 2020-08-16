@@ -75,7 +75,7 @@ class Species():
             coeffs_raw = coeffs_raw[0:7] + coeffs_raw[8:10]
             coeffs = [float(c.replace('D','e')) for c in coeffs_raw]
             self.coefficients.append(coeffs)
-        print(self)
+        #print(self)
 
     def __str__(self):
         return(print_str.format(self.species_name, self.phase_name, self.source, self.molecular_wt, \
@@ -113,7 +113,9 @@ class Species():
 
 if __name__ == '__main__':
     Water = Species('H2O(L)')
+    print(Water)
     Steam = Species('H2O')
+    print(Steam)
     
     test_temp = 300 # K
     Water.printState(test_temp)
