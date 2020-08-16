@@ -15,7 +15,8 @@ H2O               CODATA 1989. JRNBS 1987 v92 p35. TRC tuv-25 10/88.
 raw_data_path = Path(__file__).parent / 'raw.dat'
 
 print_str = '''
-Species Name: {}
+Species: {}
+Phase: {}
 Data Source: {}
 Molecular wt: {} g/mol
 Valid temperature range(s): {}
@@ -77,7 +78,7 @@ class Species():
         print(self)
 
     def __str__(self):
-        return(print_str.format(self.species_name, self.source, self.molecular_wt, \
+        return(print_str.format(self.species_name, self.phase_name, self.source, self.molecular_wt, \
                 ', '.join([str(tuple(T)) for T in self.T_ranges])))
 
     def _getCoeffs(self, T):
