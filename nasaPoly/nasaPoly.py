@@ -60,7 +60,10 @@ class Species():
         self.ref_data_code = lines[1][3:9]
         self.chem_formula = lines[1][10:50]
         self.phase = int(lines[1][50:52])
-        self.phase_name = {0: 'gas', 1: 'solid', 2: 'liquid'}[self.phase]
+        if self.phase < 2:
+            self.phase_name = {0: 'gas', 1: 'solid'}[self.phase]
+        else:
+            self.phase_name = 'Check source'
         self.molecular_wt = float(lines[1][52:65])
         self.h_f_0 = float(lines[1][65:80]) # heat of formation at 298.15 K, J/mol
         if self.num_T_ints > 0:
@@ -124,4 +127,7 @@ if __name__ == '__main__':
     h_0_water = Water.h_0(test_temp)
     print('{} J/mol\n'.format(h_0_water))
 
-    listSpecies()
+    Al2O3_l = Species('AL2O3(L)')
+    print(Al2O3_l)
+
+    #listSpecies()
