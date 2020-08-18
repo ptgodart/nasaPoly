@@ -86,7 +86,7 @@ class Species():
 
     def _getCoeffs(self, T):
         for i in range(0, self.num_T_ints):
-            if T >= self.T_ranges[i][0] and T < self.T_ranges[i][1]:
+            if T >= self.T_ranges[i][0] and T <= self.T_ranges[i][1]:
                 return(self.coefficients[i])
         print('{} K is out of valid range(s) for {}!'.format(T, self.species_name))
         raise ValueError
